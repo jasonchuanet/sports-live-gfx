@@ -1,5 +1,5 @@
 # sports-live-gfx
-##### Sports live-casting graphics for use with OBS and Scoreboard Assistant
+Sports live-casting graphics for use with OBS and Scoreboard Assistant
 # How To Use
 1. Place [Scoreboard Assistant ](https://obsproject.com/forum/resources/scoreboard-assistant.112/) (Non-Free) and all associated files in the sports-live-gfx folder.
 2. Add **lowerthirdsports.html** to OBS via the [Browser Plugin](https://obsproject.com/forum/resources/browser-plugin.115/)
