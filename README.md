@@ -9,7 +9,6 @@
 - Implement better clock backend. Perferably one that doesn't write to disk every second.
 - Clean up CSS
 - Learn / Optimize JS
-
 # Notes
 - XSS is disabled in Chrome by deafult. Either use Mozilla FireFox or the Browser Plugin for OBS to change scores.
 - This is my first attempt at JS, CSS and HTML. I apologize in advance for spaghetti code.
