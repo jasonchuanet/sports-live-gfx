@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lowerthirdsports>
+	<player1>Jason #FF0000</player1>
+	<player1A>Jason #FF0000</player1A>
+	<player1B />
+	<player2>GAME #0000FF</player2>
+	<player2A>GAME #0000FF</player2A>
+	<player2B />
+	<score1>3</score1>
+	<score1A>3</score1A>
+	<score1B />
+	<score2>4</score2>
+	<score2A>4</score2A>
+	<score2B />
+	<image1>sandwiches-576276</image1>
+	<image1A>sandwiches-576276</image1A>
+	<image1B />
+	<image2>sandwiches-576276</image2>
+	<image2A>sandwiches-576276</image2A>
+	<image2B />
+	<match>04.07</match>
+	<matchA>04.07</matchA>
+	<matchB />
+	<game>YOUNOW    </game>
+	<gameA>YOUNOW</gameA>
+	<gameB />
+	<visible>true</visible>
+	<time>636031915050042344</time>
+</lowerthirdsports>
