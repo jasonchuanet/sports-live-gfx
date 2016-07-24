@@ -20,4 +20,5 @@ Execpt for:
 - backing.png - by Jason Chua, Copyright Cooper City High School 2016
 - jquery-3.0.0.min.js - jQuery Foundation, MIT License
 - velocity.min.js - 2014 Julian Shapiro MIT License
+
 This project is is licensed under the Mozilla Public License 2.0
