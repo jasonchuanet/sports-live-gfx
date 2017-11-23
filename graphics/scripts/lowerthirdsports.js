@@ -8,4 +8,5 @@ const score2 				= nodecg.Replicant("score2", 				{defaultValue: "S2"});
 
 nodecg.listenFor('score_update', function () {
   document.getElementById("score1").innerHTML = score1.value;
+	document.getElementById("score2").innerHTML = score2.value;
 });

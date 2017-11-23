@@ -13,11 +13,15 @@
 <body>
   <label>Score 1</label>
   <textarea id="score1"></textarea>
-  <button onclick="score_update(1)">Send</button>
+  <button onclick="score_update()">Send</button>
 
   <label>Score 2</label>
   <textarea id="score2"></textarea>
-  <button onclick="score_update(2)">Send</button>
+  <button onclick="score_update()">Send</button>
+
+  <button onclick="score_update('add')">Add</button>
+  <button onclick="score_get()">Get</button>
+
 
   <script>
   const player1 			= nodecg.Replicant("player1", 			{defaultValue: "P1"});
@@ -27,10 +31,24 @@
   const score1 				= nodecg.Replicant("score1", 				{defaultValue: "S1"});
   const score2 				= nodecg.Replicant("score2", 				{defaultValue: "S2"});
 
-  function score_update(){
+  function score_get(){
+    document.getElementById("score1").value = score1.value;
+    document.getElementById("score2").value = score2.value;
+  }
+
+
+  function score_update(operation){
     score1.value = document.getElementById("score1").value;
+    score2.value = document.getElementById("score2").value;
+    if(operation === 'add'){
+      score1.value++;
+      score2.value++;
+      document.getElementById("score1").value++;
+      document.getElementById("score2").value++;
+    }
     nodecg.sendMessage('score_update');
   }
+
   </script>
 </body>
 </html>
