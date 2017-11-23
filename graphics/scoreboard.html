@@ -1,57 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="scripts/jquery-3.0.0.min.js"></script>
 	<script src="scripts/velocity.min.js"></script>
 	<script src="scripts/_global.js"></script>
 	<script src="scripts/lowerthirdsports.js"></script>
 	<link rel="stylesheet" type="text/css" href="scripts/_global.css">
-	<link rel="stylesheet" type="text/css" href="scripts/lowerthirdsports.css">
+	<script>
+	</script>
+	<style type="text/css">
+		.overlay {
+			height: 82px;
+			display: grid;
+			background: none;
+			padding-top: 930px;
+			padding-left: 553px;
+			position: absolute;
+			grid-template-columns: 190px 112px 12px 190px 112px 12px 269px 12px 269px;
+			grid-template-areas:	"player1 score1 . player2 score2 . r1 . r2";
+		}
+		.overlay div:not(.r1){
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		body img{
+			position: absolute;
+			z-index: -1;
+		}
+		.transitions{
+			position: absolute;
+		}
+		.aux{font-size: 35px;}
+		.clock{font-size: 65px;}
+		.players{font-size: 45px;}
+		.player1{grid-area: player1;}
+		.player2{grid-area: player2;}
+		.scores{font-size: 65px;}
+		.score1{grid-area: score1;}
+		.score2{grid-area: score2;}
+		.r1{
+			grid-area: r1;
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+		}
+		.r2{grid-area: r2;}
+	</style>
 </head>
 
 <body>
-	<img src="images/backing.png"></img>
 	<div class="transitions transition1">
-  	<div id="box1" style="background:#FFF;height:81px;width:628px;"></div>
+		<div id="box1" style="background:#FFF;height:81px;width:628px;"></div>
 	</div>
 	<div class="transitions transition2">
-  	<div id="box2" style="background:#FFF;height:81px;width:0px;"></div>
+		<div id="box2" style="background:#FFF;height:81px;width:0px;"></div>
 	</div>
 	<div class="transitions transition3">
 		<div id="box3" style="background:#FFF;height:81px;width:0px;"></div>
 	</div>
-	<div class="LowerThird">
-		<img class="backing" src="./images/backinglocal.png" alt="" height="1080" width="1920">
-		<div class="players">
-			<div class="player player1 overflow" id="p1">WWWW</div>
-			<div class="player player2 overflow" id="p2">WWWW</div>
+	<div class="overlay">
+				<div class="players player1" id="player1">P1</div>
+				<div class="players player2" id="player2">P2</div>
+				<div class="scores score1" id="score1">800</div>
+				<div class="scores score2" id="score2">800</div>
+		<div class="r1">
+			<div class="aux" id="aux1">Aux1</div>
+			<div class="aux" id="aux2">Aux2</div>
 		</div>
-		<div class="scores">
-			<div class="score score1" id="s1">800</div>
-			<div class="score score2" id="s2">800</div>
-		</div>
-		<div class="matches">
-			<div class="match match1 overflow" id="mm">Match</div>
-		</div>
-	</div>
-	<div class="full btm">
-		<div class="full games">
-			<div class="game game1 overflow" id="gg">Game</div>
-		</div>
-		<div class="clock tick overflow" id="cd">99:99</div>
-	</div>
+		<div class="r2">
 
+			<div class="clock tick overflow" id="clock">99:99</div>
+		</div>
+
+
+	</div>
 	<div class="colorbox">
 		<div class="colorbox colorbox1">
-			<svg width="191" height="81">
-	  		<rect id="pc1" width="191" height="81" style="fill:rgb(0,0,255)" />
-			</svg>
+
 		</div>
 		<div class="colorbox colorbox2">
-			<svg width="191" height="81">
-				<rect id="pc2" width="191" height="81" style="fill:rgb(0,0,255)" />
-			</svg>
+
 		</div>
 	</div>
+	<img src="images/backing.png"></img>
 </body>
+
 </html>
