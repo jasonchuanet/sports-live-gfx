@@ -1,7 +1,0 @@
-body {
-	position: relative; width: 1920px; margin: 0; overflow: visible; white-space: nowrap;
-	color: #FFF; font: bold 16px 'Arial'; line-height: normal; text-align: center;
-	text-shadow: 3px 3px 5px black; background-color: blue;
-}
-
-.overflow { overflow: visible; text-overflow: ellipsis; }
