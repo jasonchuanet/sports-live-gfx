@@ -28,8 +28,8 @@
   const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
   const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
   const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
-  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "S1"});
-  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "S2"});
+  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
+  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
 
   function score_get(){
     document.getElementById("score1").value = score1.value;
@@ -43,11 +43,14 @@
     if(operation === 'add'){
       score1.value++;
       score2.value++;
-      document.getElementById("score1").value++;
-      document.getElementById("score2").value++;
     }
     nodecg.sendMessage('score_update');
   }
+
+  score2.on('change', (newValue, oldValue) => {
+    document.getElementById("score1").value = score1.value;
+    document.getElementById("score2").value = score2.value;
+  });
 
   </script>
 </body>

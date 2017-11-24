@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    body{
+      display: grid;
+      grid-template-columns: auto 8em 4em;
+    }
+    </style>
+
+</head>
+<body>
+  <label>Timer</label>
+  <textarea id="clock">5:00</textarea>
+  <button onclick="time_update('sync')">Send</button>
+
+  <button onclick="time_update('add')">+1</button>
+  <button onclick="tick()">Start</button>
+  <button onclick="time_update('remove')">-1</button>
+
+
+
+  <script>
+  const player1 			= nodecg.Replicant("player1", 			{defaultValue: "P1"});
+  const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
+  const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
+  const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
+  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
+  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
+  const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
+
+  timer = null;
+
+  function time_get(){
+    document.getElementById("clock").value = clock.value;
+  }
+
+  function tick(){
+    if(timer){
+      clearInterval(timer);
+      timer = null;
+    } else {
+      timer = setInterval(function(){
+                clock.value--;
+              }, 1000);
+    }
+  }
+
+  function time_update(operation){
+    if(operation === 'add'){
+      clock.value++;
+    }
+    if(operation === 'remove'){
+      clock.value--;
+    }
+    if(operation === 'sync'){
+      clock.value = document.getElementById("clock").value;
+    }
+    nodecg.sendMessage('clock_update');
+  }
+
+  clock.on('change', (newValue, oldValue) => {
+    document.getElementById("clock").value = clock.value;
+    nodecg.sendMessage('clock_update');
+  });
+
+  </script>
+</body>
+</html>
