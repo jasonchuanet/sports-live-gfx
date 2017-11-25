@@ -11,41 +11,74 @@
 	</script>
 	<style type="text/css">
 		.overlay {
-			height: 82px;
+			height: 80px;
 			display: grid;
-			background: none;
-			padding-top: 930px;
-			padding-left: 553px;
+			background: white;
+			margin-top: 930px;
+			margin-left: 320px;
 			position: absolute;
-			grid-template-columns: 190px 112px 12px 190px 112px 12px 269px 12px 269px;
-			grid-template-areas:	"player1 score1 . player2 score2 . r1 . r2";
+			grid-gap: 10px;
+			grid-template-columns: 200px 250px 120px 250px 120px 270px 270px;
+			grid-template-areas:	"title player1 score1 player2 score2 r1 r2";
 		}
 		.overlay div:not(.r1){
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-		body img{
-			position: absolute;
-			z-index: -1;
-		}
 		.transitions{
 			position: absolute;
 		}
-		.aux{font-size: 35px;}
-		.clock{font-size: 65px;}
-		.players{font-size: 45px;}
+		.logo_container{
+			margin-left: 50px;
+			margin-top: 890px;
+			height:160px;
+			width:260px;
+			position: absolute;
+		}
+		#logo{
+			position: absolute;
+			max-width: 260px;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+
+		}
+		#title{
+			grid-area: title;
+			background: black;
+			font-size: 40px;
+		}
+		.players{
+			font-size: 45px;
+			background: black;
+		}
 		.player1{grid-area: player1;}
 		.player2{grid-area: player2;}
-		.scores{font-size: 65px;}
+		.scores{
+			font-size: 65px;
+			background: repeating-linear-gradient(
+		  #000000,
+			#000000 10px,
+			#383838 10px,
+			#383838 20px,
+			#000000 20px
+			);
+		}
 		.score1{grid-area: score1;}
 		.score2{grid-area: score2;}
 		.r1{
 			grid-area: r1;
+			background: black;
 			display: grid;
 			grid-template-rows: 1fr 1fr;
 		}
-		.r2{grid-area: r2;}
+		.r2{
+			grid-area: r2;
+			background: black;
+		}
+		.aux{font-size: 35px;}
+		.clock{font-size: 65px;}
 	</style>
 </head>
 
@@ -59,17 +92,20 @@
 	<div class="transitions transition3">
 		<div id="box3" style="background:#FFF;height:81px;width:0px;"></div>
 	</div>
+	<div class="logo_container">
+		<img id="logo" src="images/sbacking.png"></img>
+	</div>
 	<div class="overlay">
-				<div class="players player1" id="player1">P1</div>
-				<div class="players player2" id="player2">P2</div>
-				<div class="scores score1" id="score1">800</div>
-				<div class="scores score2" id="score2">800</div>
+		<div id="title">SCORES</div>
+		<div class="players player1" id="player1">P1</div>
+		<div class="players player2" id="player2">P2</div>
+		<div class="scores score1" id="score1">800</div>
+		<div class="scores score2" id="score2">800</div>
 		<div class="r1">
 			<div class="aux" id="aux1">Aux1</div>
 			<div class="aux" id="aux2">Aux2</div>
 		</div>
 		<div class="r2">
-
 			<div class="clock tick overflow" id="clock">99:99</div>
 		</div>
 
@@ -77,13 +113,10 @@
 	</div>
 	<div class="colorbox">
 		<div class="colorbox colorbox1">
-
 		</div>
 		<div class="colorbox colorbox2">
-
 		</div>
 	</div>
-	<img src="images/backing.png"></img>
 </body>
 
 </html>

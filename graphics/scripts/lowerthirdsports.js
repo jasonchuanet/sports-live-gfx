@@ -5,7 +5,12 @@ const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"}
 const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
 const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
 const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
+const logo          = nodecg.Replicant('assets:logo');
 //document.getElementById("s1").innerHTML = "";
+
+logo.on('change', (url) => {
+    document.getElementById("logo").src = logo.value[0].url;
+});
 
 nodecg.listenFor('score_update', function () {
   document.getElementById("score1").innerHTML = score1.value;
