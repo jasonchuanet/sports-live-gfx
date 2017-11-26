@@ -31,7 +31,7 @@
       {
         "name": "Clock",
         "title": "Clock",
-        "width": 2,
+        "width": 1,
         "file": "clock.html",
         "headerColor": "#9f9bbd"
       }

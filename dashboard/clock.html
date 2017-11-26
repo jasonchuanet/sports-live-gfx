@@ -5,7 +5,7 @@
     <style type="text/css">
     body{
       display: grid;
-      grid-template-columns: auto 8em 4em;
+      grid-template-columns: auto auto;
     }
     </style>
 
@@ -14,10 +14,9 @@
   <label>Timer</label>
   <textarea id="clock">5:00</textarea>
   <button onclick="time_update('sync')">Send</button>
-
-  <button onclick="time_update('add')">+1</button>
   <button onclick="tick()">Start</button>
   <button onclick="time_update('remove')">-1</button>
+  <button onclick="time_update('add')">+1</button>
 
 
 

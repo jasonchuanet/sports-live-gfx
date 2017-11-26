@@ -18,7 +18,7 @@
 		  color: #FFF;
 		}
 		.overlay {
-			height: 80px;
+			height: 85px;
 			display: grid;
 			background: white;
 			margin-top: 930px;
@@ -55,13 +55,16 @@
 		}
 		.players{
 			font-size: 45px;
+			text-shadow:1px 1px 20px black;
 			background: black;
 		}
 		.player1{grid-area: player1;}
 		.player2{grid-area: player2;}
 		.scores{
 			font-size: 65px;
-			background: repeating-linear-gradient(
+			background:
+			linear-gradient(to right, transparent 50%, white 50%),
+			repeating-linear-gradient(
 		  #000000,
 			#000000 10px,
 			#383838 10px,
@@ -69,7 +72,6 @@
 			#000000 20px
 			);
 			background-size: 200% 100%;
-			background-image: linear-gradient(to right, black 50%, transparent 50%);
 		}
 		.score1{grid-area: score1;}
 		.score2{grid-area: score2;}
