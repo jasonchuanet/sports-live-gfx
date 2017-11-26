@@ -121,6 +121,18 @@
 	logo.on('change', (url) => {
 	    document.getElementById("logo").src = logo.value[0].url;
 	});
+	player1.on('change', () => {
+			document.getElementById("player1").innerHTML = player1.value;
+	});
+	player1color.on('change', () => {
+			document.getElementById("player1").style.backgroundColor = player1color.value;
+	});
+	player2.on('change', () => {
+			document.getElementById("player2").innerHTML = player2.value;
+	});
+	player2color.on('change', () => {
+			document.getElementById("player2").style.backgroundColor = player2color.value;
+	});
 
 	nodecg.listenFor('score_update', function () {
 		score1_target = document.getElementById("score1");

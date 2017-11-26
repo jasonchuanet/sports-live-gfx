@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    body{
+      display: grid;
+      grid-template-columns: 4em auto 5em 2em;
+    }
+    .color{
+      width:100%;
+      height:100%;
+    }
+    </style>
+
+</head>
+<body>
+  <label>Player 1</label>
+  <textarea id="player1" onchange="update_players()">Player 1</textarea>
+  <textarea id="color1" onchange="update_players()">black</textarea>
+  <div class='color' id="color1preview"></div>
+
+  <label>Player 2</label>
+  <textarea id="player2" onchange="update_players()">Player 2</textarea>
+  <textarea id="color2" onchange="update_players()">black</textarea>
+  <div class='color' id="color2preview"></div>
+
+  <button onclick="lock_input()">Lock</button>
+
+
+  <script>
+  const player1 			= nodecg.Replicant("player1", 			{defaultValue: "P1"});
+  const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
+  const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
+  const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
+  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
+  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
+  const player_lock   = nodecg.Replicant("player_lock", 	{defaultValue: false});
+
+  player1_entry         = document.getElementById('player1');
+  player1color_entry    = document.getElementById('color1');
+  player1color_preview  = document.getElementById('color1preview');
+  player2_entry         = document.getElementById('player2');
+  player2color_entry    = document.getElementById('color2');
+  player2color_preview  = document.getElementById('color2preview');
+
+  player1.on('change', () => {
+    player1_entry.value      = player1.value;
+  });
+  player1color.on('change', () => {
+    player1color_entry.value      = player1color.value;
+    player1color.value = color1preview.style.backgroundColor = player1color_entry.value;
+  });
+  player2.on('change', () => {
+    player2_entry.value      = player2.value;
+  });
+  player2color.on('change', () => {
+    player2color_entry.value      = player2color.value;
+    player2color.value = color2preview.style.backgroundColor = player2color_entry.value;
+  });
+  initialize = true;
+  player_lock.on('change', () => {
+    if(initialize === true && player_lock.value === true){
+      lock_input('lock');
+    } else if(initialize === true){
+      console.log('pop');
+      initialize = false;
+    }
+  });
+
+  function update_players(){
+    player1.value = player1_entry.value;
+    player1color.value = color1preview.style.backgroundColor = player1color_entry.value;
+    player2.value = player2_entry.value;
+    player2color.value = color2preview.style.backgroundColor = player2color_entry.value;
+  }
+  function lock_input(option){
+    if(player_lock.value == false || option=== 'lock'){
+      player1_entry.disabled = true;
+      player1color_entry.disabled = true;
+      player2_entry.disabled = true;
+      player2color_entry.disabled = true;
+      player_lock.value = true;
+    } else
+    if(player_lock.value == true){
+      player1_entry.disabled = false;
+      player1color_entry.disabled = false;
+      player2_entry.disabled = false;
+      player2color_entry.disabled = false;
+      player_lock.value = false;
+    }
+
+  }
+
+
+
+  </script>
+</body>
+</html>

@@ -34,6 +34,13 @@
         "width": 1,
         "file": "clock.html",
         "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "Players",
+        "title": "Players",
+        "width": 3,
+        "file": "players.html",
+        "headerColor": "#9f9bbd"
       }
     ],
     "graphics": [
