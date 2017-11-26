@@ -2,14 +2,21 @@
 <html>
 
 <head>
-	<script src="scripts/jquery-3.0.0.min.js"></script>
-	<script src="scripts/velocity.min.js"></script>
-	<script src="scripts/_global.js"></script>
-	<script src="scripts/lowerthirdsports.js"></script>
-	<link rel="stylesheet" type="text/css" href="scripts/_global.css">
 	<script>
 	</script>
 	<style type="text/css">
+		body {
+		    padding: 0;
+		    margin: 0;
+		    /*overflow: hidden;*/
+		    width: 1920px;
+		    height: 1080px;
+		    background-color: blue;
+		}
+		div {
+		  font: bold 16px 'Arial';
+		  color: #FFF;
+		}
 		.overlay {
 			height: 80px;
 			display: grid;
@@ -25,9 +32,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		}
-		.transitions{
-			position: absolute;
 		}
 		.logo_container{
 			margin-left: 50px;
@@ -64,6 +68,8 @@
 			#383838 20px,
 			#000000 20px
 			);
+			background-size: 200% 100%;
+			background-image: linear-gradient(to right, black 50%, transparent 50%);
 		}
 		.score1{grid-area: score1;}
 		.score2{grid-area: score2;}
@@ -83,17 +89,8 @@
 </head>
 
 <body>
-	<div class="transitions transition1">
-		<div id="box1" style="background:#FFF;height:81px;width:628px;"></div>
-	</div>
-	<div class="transitions transition2">
-		<div id="box2" style="background:#FFF;height:81px;width:0px;"></div>
-	</div>
-	<div class="transitions transition3">
-		<div id="box3" style="background:#FFF;height:81px;width:0px;"></div>
-	</div>
 	<div class="logo_container">
-		<img id="logo" src="images/sbacking.png"></img>
+		<img id="logo"></img>
 	</div>
 	<div class="overlay">
 		<div id="title">SCORES</div>
@@ -108,15 +105,52 @@
 		<div class="r2">
 			<div class="clock tick overflow" id="clock">99:99</div>
 		</div>
+	</div>
+	<script>
+	const player1 			= nodecg.Replicant("player1", 			{defaultValue: "P1"});
+	const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
+	const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
+	const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
+	const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
+	const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
+	const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
+	const logo          = nodecg.Replicant('assets:logo');
+
+	logo.on('change', (url) => {
+	    document.getElementById("logo").src = logo.value[0].url;
+	});
+
+	nodecg.listenFor('score_update', function () {
+		score1_target = document.getElementById("score1");
+		if(score1_target.innerHTML !== score1.value){
+			change_score(score1_target, score1);
+		}
+		score2_target = document.getElementById("score2");
+		if(score2_target.innerHTML !== score2.value){
+			change_score(score2_target, score2);
+		}
 
 
-	</div>
-	<div class="colorbox">
-		<div class="colorbox colorbox1">
-		</div>
-		<div class="colorbox colorbox2">
-		</div>
-	</div>
+		function change_score(target, score){
+			var wipein = target.animate([
+				{backgroundPosition: '0%'},
+				{backgroundPosition: '-100%'}
+			], 300)
+			var wipeout = wipein.addEventListener('finish', function() {
+				target.innerHTML = score.value;
+				target.animate([
+					{backgroundPosition: '100%'},
+					{backgroundPosition: '0%'}
+				], 300);
+			});
+		}
+
+	});
+	nodecg.listenFor('clock_update', function () {
+	  document.getElementById("clock").innerHTML = clock.value;
+	});
+
+	</script>
 </body>
 
 </html>
