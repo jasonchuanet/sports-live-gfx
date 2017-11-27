@@ -134,35 +134,36 @@
 			document.getElementById("player2").style.backgroundColor = player2color.value;
 	});
 
+	score1_target = document.getElementById("score1");
+	score2_target = document.getElementById("score2");
+	change_score(score1_target, score1);
+	change_score(score2_target, score2);
+
 	nodecg.listenFor('score_update', function () {
-		score1_target = document.getElementById("score1");
 		if(score1_target.innerHTML !== score1.value){
 			change_score(score1_target, score1);
 		}
-		score2_target = document.getElementById("score2");
 		if(score2_target.innerHTML !== score2.value){
 			change_score(score2_target, score2);
 		}
-
-
-		function change_score(target, score){
-			var wipein = target.animate([
-				{backgroundPosition: '0%'},
-				{backgroundPosition: '-100%'}
-			], 300)
-			var wipeout = wipein.addEventListener('finish', function() {
-				target.innerHTML = score.value;
-				target.animate([
-					{backgroundPosition: '100%'},
-					{backgroundPosition: '0%'}
-				], 300);
-			});
-		}
-
 	});
 	nodecg.listenFor('clock_update', function () {
 	  document.getElementById("clock").innerHTML = clock.value;
 	});
+	
+	function change_score(target, score){
+		var wipein = target.animate([
+			{backgroundPosition: '0%'},
+			{backgroundPosition: '-100%'}
+		], 300)
+		var wipeout = wipein.addEventListener('finish', function() {
+			target.innerHTML = score.value;
+			target.animate([
+				{backgroundPosition: '100%'},
+				{backgroundPosition: '0%'}
+			], 300);
+		});
+	}
 
 	</script>
 </body>
