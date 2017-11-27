@@ -14,7 +14,7 @@
   <label>Timer</label>
   <textarea id="clock">5:00</textarea>
   <button onclick="time_update('sync')">Send</button>
-  <button onclick="tick()">Start</button>
+  <button id='startstop' onclick="tick()">Start</button>
   <button onclick="time_update('remove')">-1</button>
   <button onclick="time_update('add')">+1</button>
 
@@ -30,19 +30,27 @@
   const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
 
   timer = null;
+  clock_entry = document.getElementById("clock");
 
   function time_get(){
-    document.getElementById("clock").value = clock.value;
+    clock_entry.value = clock.value;
   }
 
   function tick(){
+    button = document.getElementById("startstop");
     if(timer){
       clearInterval(timer);
       timer = null;
+      clock_entry.disabled = false;
+      button.innerHTML='Start';
+
     } else {
+      time_update('sync');
       timer = setInterval(function(){
                 clock.value--;
               }, 1000);
+      clock_entry.disabled = true;
+      button.innerHTML='Stop';
     }
   }
 
@@ -54,13 +62,13 @@
       clock.value--;
     }
     if(operation === 'sync'){
-      clock.value = document.getElementById("clock").value;
+      clock.value = clock_entry.value;
     }
     nodecg.sendMessage('clock_update');
   }
 
   clock.on('change', (newValue, oldValue) => {
-    document.getElementById("clock").value = clock.value;
+    clock_entry.value = clock.value;
     nodecg.sendMessage('clock_update');
   });
 
