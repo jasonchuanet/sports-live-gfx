@@ -33,8 +33,10 @@
 
   function tick(){
     if(clocktick_state.value === true){
+      time_update('sync');
       clocktick_state.value = false;
     } else {
+      time_update('sync');
       clocktick_state.value = true;
     }
   }
