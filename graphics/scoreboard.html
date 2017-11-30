@@ -115,7 +115,7 @@
 	const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
 	const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
 	const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
-	const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
+	const seconds 			= nodecg.Replicant("seconds", 			{defaultValue: "00:00"});
 	const logo          = nodecg.Replicant('assets:logo');
 
 	logo.on('change', (url) => {
@@ -148,9 +148,9 @@
 		}
 	});
 	nodecg.listenFor('clock_update', function () {
-	  document.getElementById("clock").innerHTML = clock.value;
+	  document.getElementById("clock").innerHTML = seconds.value;
 	});
-	
+
 	function change_score(target, score){
 		var wipein = target.animate([
 			{backgroundPosition: '0%'},

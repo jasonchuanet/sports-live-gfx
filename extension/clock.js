@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (nodecg) {
-  const clock 					= nodecg.Replicant("clock", 					{defaultValue: "00:00"});
+  const seconds 					= nodecg.Replicant("seconds", 					{defaultValue: "00:00"});
 	const clocktick_state = nodecg.Replicant("clocktick_state",	{defaultValue: false});
 
 
@@ -14,14 +14,14 @@ module.exports = function (nodecg) {
 		}
 		if(newValue === true){
 			timer = setInterval(function(){
-								clock.value--;
+								seconds.value--;
 								nodecg.sendMessage('clock_update');
 							}, 1000);
 		}
   });
 
 
-  clock.on('change', (newValue, oldValue) => {
+  seconds.on('change', (newValue, oldValue) => {
     nodecg.sendMessage('clock_update');
   });
 

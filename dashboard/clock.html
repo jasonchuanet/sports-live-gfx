@@ -21,14 +21,14 @@
 
 
   <script>
-  const clock = nodecg.Replicant("clock", {defaultValue: "00:00"});
+  const seconds = nodecg.Replicant("seconds", {defaultValue: "00:00"});
   const clocktick_state = nodecg.Replicant("clocktick_state", {defaultValue: false});
 
   clock_entry = document.getElementById("clock");
   button = document.getElementById("startstop");
 
   function time_get(){
-    clock_entry.value = clock.value;
+    clock_entry.value = seconds.value;
   }
 
   function tick(){
@@ -53,19 +53,19 @@
 
   function time_update(operation){
     if(operation === 'add'){
-      clock.value++;
+      seconds.value++;
     }
     if(operation === 'remove'){
-      clock.value--;
+      seconds.value--;
     }
     if(operation === 'sync'){
-      clock.value = clock_entry.value;
+      seconds.value = clock_entry.value;
     }
     nodecg.sendMessage('clock_update');
   }
 
-  clock.on('change', (newValue, oldValue) => {
-    clock_entry.value = clock.value;
+  seconds.on('change', (newValue, oldValue) => {
+    clock_entry.value = seconds.value;
   });
   clocktick_state.on('change', (newValue, oldValue) => {
     if(clocktick_state.value === true){
