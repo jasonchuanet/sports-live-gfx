@@ -21,34 +21,29 @@
 
 
   <script>
-  const player1 			= nodecg.Replicant("player1", 			{defaultValue: "P1"});
-  const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
-  const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
-  const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
-  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
-  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
-  const clock 				= nodecg.Replicant("clock", 				{defaultValue: "00:00"});
+  const clock = nodecg.Replicant("clock", {defaultValue: "00:00"});
+  const clocktick_state = nodecg.Replicant("clocktick_state", {defaultValue: false});
 
-  timer = null;
   clock_entry = document.getElementById("clock");
+  button = document.getElementById("startstop");
 
   function time_get(){
     clock_entry.value = clock.value;
   }
 
   function tick(){
-    button = document.getElementById("startstop");
-    if(timer){
-      clearInterval(timer);
-      timer = null;
+    if(clocktick_state.value === true){
+      clocktick_state.value = false;
+    } else {
+      clocktick_state.value = true;
+    }
+  }
+
+  function user_entry(value){
+    if(value === true){
       clock_entry.disabled = false;
       button.innerHTML='Start';
-
     } else {
-      time_update('sync');
-      timer = setInterval(function(){
-                clock.value--;
-              }, 1000);
       clock_entry.disabled = true;
       button.innerHTML='Stop';
     }
@@ -69,7 +64,13 @@
 
   clock.on('change', (newValue, oldValue) => {
     clock_entry.value = clock.value;
-    nodecg.sendMessage('clock_update');
+  });
+  clocktick_state.on('change', (newValue, oldValue) => {
+    if(clocktick_state.value === true){
+      user_entry(false);
+    } else {
+      user_entry(true);
+    }
   });
 
   </script>
