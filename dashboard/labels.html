@@ -38,23 +38,25 @@
   aux1_entry   = document.getElementById('aux1');
   aux2_entry   = document.getElementById('aux2');
 
-  title_entry.on('change', () => {
+  title.on('change', () => {
     title_entry.value   = title.value;
   });
-  aux1_entry.on('change', () => {
+  aux1.on('change', () => {
     aux1_entry.value    = aux1.value;
   });
-  aux2_entry.on('change', () => {
-    player2_entry.value = player2.value;
+  aux2.on('change', () => {
+    aux2_entry.value    = aux2.value;
   });
 
-  initialize = true;
-  player_lock.on('change', () => {
-    if(initialize === true && player_lock.value === true){
-      lock_input('lock');
-    } else if(initialize === true){
-      console.log('pop');
-      initialize = false;
+  label_lock.on('change', () => {
+    if(label_lock.value === true){
+      title_entry.disabled  = true;
+      aux1_entry.disabled   = true;
+      aux2_entry.disabled   = true;
+    } else if(label_lock.value === false){
+      title_entry.disabled  = false;
+      aux1_entry.disabled   = false;
+      aux2_entry.disabled   = false;
     }
   });
 
@@ -63,16 +65,13 @@
     aux1.value  = aux1_entry.value;
     aux2.value  = aux2_entry.value;
   }
+
   function lock_input(option){
-    if(label_lock.value == false || option=== 'lock'){
-      title_entry.disabled  = true;
-      aux1_entry.disabled   = true;
-      aux2_entry.disabled   = true;
+    if(label_lock.value == false){
+      label_lock.value = true;
     } else
     if(label_lock.value == true){
-      title_entry.disabled  = true;
-      aux1_entry.disabled   = true;
-      aux2_entry.disabled   = true;
+      label_lock.value = false;
     }
 
   }

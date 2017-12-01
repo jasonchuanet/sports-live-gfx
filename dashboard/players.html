@@ -33,8 +33,6 @@
   const player1color 	= nodecg.Replicant("player1color", 	{defaultValue: "000000"});
   const player2 			= nodecg.Replicant("player2", 			{defaultValue: "P2"});
   const player2color 	= nodecg.Replicant("player2color", 	{defaultValue: "000000"});
-  const score1 				= nodecg.Replicant("score1", 				{defaultValue: "999"});
-  const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
   const player_lock   = nodecg.Replicant("player_lock", 	{defaultValue: false});
 
   player1_entry         = document.getElementById('player1');
@@ -61,10 +59,15 @@
   initialize = true;
   player_lock.on('change', () => {
     if(initialize === true && player_lock.value === true){
-      lock_input('lock');
+      player1_entry.disabled = true;
+      player1color_entry.disabled = true;
+      player2_entry.disabled = true;
+      player2color_entry.disabled = true;
     } else if(initialize === true){
-      console.log('pop');
-      initialize = false;
+      player1_entry.disabled = false;
+      player1color_entry.disabled = false;
+      player2_entry.disabled = false;
+      player2color_entry.disabled = false;
     }
   });
 
@@ -74,19 +77,11 @@
     player2.value = player2_entry.value;
     player2color.value = color2preview.style.backgroundColor = player2color_entry.value;
   }
-  function lock_input(option){
-    if(player_lock.value == false || option=== 'lock'){
-      player1_entry.disabled = true;
-      player1color_entry.disabled = true;
-      player2_entry.disabled = true;
-      player2color_entry.disabled = true;
+  function lock_input(){
+    if(player_lock.value == false){
       player_lock.value = true;
     } else
     if(player_lock.value == true){
-      player1_entry.disabled = false;
-      player1color_entry.disabled = false;
-      player2_entry.disabled = false;
-      player2color_entry.disabled = false;
       player_lock.value = false;
     }
 
