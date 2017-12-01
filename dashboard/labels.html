@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    body{
+      display: grid;
+      grid-template-columns: 4em auto;
+    }
+    .color{
+      width:100%;
+      height:100%;
+    }
+    </style>
+
+</head>
+<body>
+  <label>Title</label>
+  <textarea id="title" onchange="update_labels()">null</textarea>
+
+  <label>Aux 1</label>
+  <textarea id="aux1" onchange="update_labels()">null</textarea>
+
+  <label>Aux 2</label>
+  <textarea id="aux2" onchange="update_labels()">null</textarea>
+
+  <button onclick="lock_input()">Lock</button>
+
+
+  <script>
+  const title         = nodecg.Replicant("title",       	{defaultValue: "Title"});
+  const aux1          = nodecg.Replicant("aux1",          {defaultValue: "aux1"});
+  const aux2          = nodecg.Replicant("aux2",        	{defaultValue: "aux2"});
+  const label_lock    = nodecg.Replicant("label_lock",  	{defaultValue: false});
+
+
+  title_entry  = document.getElementById('title');
+  aux1_entry   = document.getElementById('aux1');
+  aux2_entry   = document.getElementById('aux2');
+
+  title_entry.on('change', () => {
+    title_entry.value   = title.value;
+  });
+  aux1_entry.on('change', () => {
+    aux1_entry.value    = aux1.value;
+  });
+  aux2_entry.on('change', () => {
+    player2_entry.value = player2.value;
+  });
+
+  initialize = true;
+  player_lock.on('change', () => {
+    if(initialize === true && player_lock.value === true){
+      lock_input('lock');
+    } else if(initialize === true){
+      console.log('pop');
+      initialize = false;
+    }
+  });
+
+  function update_labels(){
+    title.value = title_entry.value;
+    aux1.value  = aux1_entry.value;
+    aux2.value  = aux2_entry.value;
+  }
+  function lock_input(option){
+    if(label_lock.value == false || option=== 'lock'){
+      title_entry.disabled  = true;
+      aux1_entry.disabled   = true;
+      aux2_entry.disabled   = true;
+    } else
+    if(label_lock.value == true){
+      title_entry.disabled  = true;
+      aux1_entry.disabled   = true;
+      aux2_entry.disabled   = true;
+    }
+
+  }
+
+  </script>
+</body>
+</html>

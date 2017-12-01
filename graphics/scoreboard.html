@@ -117,9 +117,22 @@
 	const score2 				= nodecg.Replicant("score2", 				{defaultValue: "999"});
 	const seconds 			= nodecg.Replicant("seconds", 			{defaultValue: "00:00"});
 	const logo          = nodecg.Replicant('assets:logo');
+	const title         = nodecg.Replicant("title",       	{defaultValue: "Title"});
+	const aux1          = nodecg.Replicant("aux1",          {defaultValue: "aux1"});
+	const aux2          = nodecg.Replicant("aux2",        	{defaultValue: "aux2"});
+	const label_lock    = nodecg.Replicant("label_lock",  	{defaultValue: false});
 
 	logo.on('change', (url) => {
 	    document.getElementById("logo").src = logo.value[0].url;
+	});
+	title.on('change', () => {
+			document.getElementById("title").innerHTML = title.value;
+	});
+	aux1.on('change', () => {
+			document.getElementById("aux1").innerHTML = aux1.value;
+	});
+	aux2.on('change', () => {
+			document.getElementById("aux2").innerHTML = aux2.value;
 	});
 	player1.on('change', () => {
 			document.getElementById("player1").innerHTML = player1.value;

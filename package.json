@@ -40,6 +40,13 @@
         "width": 3,
         "file": "players.html",
         "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "Labels",
+        "title": "Labels",
+        "width": 3,
+        "file": "labels.html",
+        "headerColor": "#9f9bbd"
       }
     ],
     "graphics": [
