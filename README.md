@@ -1,23 +1,32 @@
 # sports-live-gfx
-Sports live-casting graphics for use with [Open Broadcaster Software](https://obsproject.com/) and NodeCG
+A 2 player generic scoreboard with scores, custom colors and text, and configurable clock for use with [Open Broadcaster Software](https://obsproject.com/) and NodeCG.
 
-# ~~How To Use~~
-1. ~~Place [Scoreboard Assistant ](https://obsproject.com/forum/resources/scoreboard-assistant.112/) (Non-Free) and all associated files in the sports-live-gfx folder.~~
-2. ~~Add **lowerthirdsports.html** to OBS via the [Browser Plugin](https://obsproject.com/forum/resources/browser-plugin.115/)~~
-3. ~~Manipulate Scores and names with Scoreboard Assistant and see magic~~
+# Initial Setup
+1. Download and setup [NodeCG](http://nodecg.com/#install) (version 0.9, and recommended  [nodecg-cli](https://www.npmjs.com/package/nodecg-cli)).
 
-# ~~TODO~~
-- ~~Remove dependence on non-free Scoreboard Assistant~~
-- ~~Implement better clock backend. Perferably one that doesn't write to disk every second.~~
-- ~~Clean up CSS~~
-- ~~Learn / Optimize JS~~
+  - installation with nodecg-cli:
+  ~~~~
+  nodecg install rebel1804/sports-live-gfx
+  ~~~~
+  - manual installation:
 
-# ~~Notes~~
-- ~~XSS is disabled in Chrome by deafult. Either use Mozilla FireFox or the Browser Plugin for OBS to change scores.~~
-- ~~This is my first attempt at JS, CSS and HTML. I apologize in advance for spaghetti code.~~
+    download and extract to the `./bundles` folder
+
+2. Start NodeCG
+  - With nodecg-cli
+  ~~~~
+  nodecg start
+  ~~~~
+
+  - manually:
+  ~~~~
+  node index.js
+  ~~~~
+
+3. Open the NodeCG Dashboard, [localhost:9090](localhost:9090)
+
+# Production Use
+See [portable NodeCG.](http://nodecg.com/tutorial-portable-nodecg.html)
 
 # License
-Execpt for:
-(none)
-
-This project is copyright Jason Chua 2017 all rights reserved
+Unless otherwise noted, this project is copyright Jason Chua 2017 all rights reserved
