@@ -159,8 +159,15 @@
 			change_score(score2_target, score2);
 		}
 	});
+
 	nodecg.listenFor('clock_update', function () {
-	  document.getElementById("clock").innerHTML = seconds.value;
+		var hours = Math.floor(seconds.value / 3600);
+		var minutes = Math.floor((seconds.value - (hours * 3600))/60);
+		var seconds_f = Math.floor((seconds.value - (minutes * 60)));
+		if(seconds_f.toString().length === 1){
+			seconds_f = "0"+seconds_f;
+		}
+		document.getElementById("clock").innerHTML = minutes+":"+seconds_f;
 	});
 
 	function change_score(target, score){

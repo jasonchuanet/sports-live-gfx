@@ -59,13 +59,21 @@
       seconds.value--;
     }
     if(operation === 'sync'){
-      seconds.value = clock_entry.value;
+      var time_tmp = clock_entry.value.split(':').reverse();
+      seconds_tmp = (time_tmp[0])+(time_tmp[1]*60);
+      seconds.value = eval(time_tmp[0])+eval(time_tmp[1]*60);
     }
     nodecg.sendMessage('clock_update');
   }
 
   seconds.on('change', (newValue, oldValue) => {
-    clock_entry.value = seconds.value;
+    var hours = Math.floor(seconds.value / 3600);
+		var minutes = Math.floor((seconds.value - (hours * 3600))/60);
+	  var seconds_f = Math.floor((seconds.value - (minutes * 60)));
+		if(seconds_f.toString().length === 1){
+			seconds_f = "0"+seconds_f;
+		}
+    clock_entry.value = minutes+":"+seconds_f;
   });
   clocktick_state.on('change', (newValue, oldValue) => {
     if(clocktick_state.value === true){
